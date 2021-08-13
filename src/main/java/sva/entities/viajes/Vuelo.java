@@ -28,9 +28,15 @@ public class Vuelo {
         //TODO
         return null;
     }
+
+    public Integer cantPasajeros(){
+        return this.pasajeros.size();
+    }
+
     public Double getDuracionAproxEnMins(){
         return duracionAproxEnMins;
     }
+
     public LocalDateTime fechaHoraAproxLlegada(){
         //TODO
         return null;

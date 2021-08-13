@@ -14,18 +14,51 @@ public class Viaje {
     }
 
     public void agregarEscala(Escala ... escalas){
-
         Collections.addAll(this.escalas, escalas);
     }
 
-    public void agregarVuelo(Vuelo ... vuelos)
-    {
-        Collections.addAll(this.vuelos, vuelos);
+    public Integer cantEscalas(){
+       return this.escalas.size();
+    }
 
+    public void agregarVuelo(Vuelo ... vuelos){
+        Collections.addAll(this.vuelos, vuelos);
+    }
+
+    public Integer cantPasajerosTotales(){
+//        Integer cantPasajeros = 0;
+//        for(Vuelo vuelo: this.vuelos){
+//            cantPasajeros += vuelo.cantPasajeros();
+//        }
+//        return cantPasajeros;
+
+        this.vuelos.stream().mapToInt()
+    }
+
+    public Integer cantVuelos(){
+        return this.vuelos.size();
+    }
+
+    private Double duracionTotalDeVuelosEnMins(){
+    Double totalMins = 0.0;
+    for(Vuelo vuelo : this.vuelos ){
+        totalMins += vuelo.getDuracionAproxEnMins();
+    }
+    return totalMins;
+    }
+
+    private Double duracionTotalDeEscalasEnMins(){
+        Double totalMins = 0.0;
+        for(int i = 0; i < this.escalas.size(); i++){
+            Escala unaEscala = this.escalas.get(i);
+
+//            totalMins += this.escalas.get(i).getDuracionEnMins();
+            totalMins += unaEscala.getDuracionEnMins();
+        }
+        return totalMins;
     }
 
     public Double duracionAproxEnMins(){
-        //TODO
-        return null;
+        return this.duracionTotalDeEscalasEnMins() + this.duracionTotalDeVuelosEnMins();
     }
 }
