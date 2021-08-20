@@ -18,7 +18,7 @@ public class Viaje {
     }
 
     public Integer cantEscalas(){
-       return this.escalas.size();
+        return this.escalas.size();
     }
 
     public void agregarVuelo(Vuelo ... vuelos){
@@ -31,8 +31,15 @@ public class Viaje {
 //            cantPasajeros += vuelo.cantPasajeros();
 //        }
 //        return cantPasajeros;
+        //Stream
 
-        this.vuelos.stream().mapToInt()
+        //[v1, v2, v3, ...vn]
+        //[300,210, 150, ... 155] -> mapToInt
+        //Necesitamos sumarlos , esto se lo conoce como reducir o aplanar
+        //El metodo sum() hace esto
+
+//        System.out.println(this.vuelos.stream().mapToInt(vuelo -> vuelo.cantPasajeros()));
+        return this.vuelos.stream().mapToInt((Vuelo v)-> v.cantPasajeros()).sum();
     }
 
     public Integer cantVuelos(){
@@ -40,11 +47,11 @@ public class Viaje {
     }
 
     private Double duracionTotalDeVuelosEnMins(){
-    Double totalMins = 0.0;
-    for(Vuelo vuelo : this.vuelos ){
-        totalMins += vuelo.getDuracionAproxEnMins();
-    }
-    return totalMins;
+        Double totalMins = 0.0;
+        for(Vuelo vuelo : this.vuelos ){
+            totalMins += vuelo.getDuracionAproxEnMins();
+        }
+        return totalMins;
     }
 
     private Double duracionTotalDeEscalasEnMins(){
