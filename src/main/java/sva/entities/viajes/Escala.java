@@ -9,6 +9,10 @@ public class Escala {
     public Escala(){
     }
 
+    public Aeropuerto getAeropuerto() {
+        return this.aeropuerto;
+    }
+
     public void setDuracionEnMins(Double duracionEnMins) {
         this.duracionEnMins = duracionEnMins;
     }

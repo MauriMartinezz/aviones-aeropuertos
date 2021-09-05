@@ -18,6 +18,10 @@ public class Vuelo {
     private List<Pasajero> pasajeros;
     private Tripulacion tripulacion;
 
+    public Vuelo(){
+        this.pasajeros = new ArrayList<>();
+    }
+
     public Vuelo(Avion avion){
         this.avion = avion;
         this.pasajeros = new ArrayList<>();
@@ -27,22 +31,35 @@ public class Vuelo {
         this.pasajeros.add(pasajero);
     }
 
+    public void setTripulacion(Tripulacion tripulacion) {
+        this.tripulacion = tripulacion;
+    }
+
     public Double capacidadOcupadaPorPasajeros(){
         return (this.cantPasajeros()*100.0)/this.avion.getCantAsientosTotales();
     }
 
-    public String formatTime(LocalDateTime fechaHora) {
-
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
-        String formatDateTime = fechaHora.format(format);
-        return formatDateTime;
+    public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
+        this.fechaHoraSalida = fechaHoraSalida;
     }
 
-    public String fechaHoraLllegada(){
-        String format = formatTime(this.fechaHoraSalida.plusMinutes(this.duracionAproxEnMins.longValue()));
-        return format;
+//    public String formatTime(LocalDateTime fechaHora) {
+//        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//        String formatDateTime = fechaHora.format(format);
+//        return formatDateTime;
+//    }
+//
+//    public LocalDateTime formatStr(String fechaHora){
+//        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//        LocalDateTime dateTime = LocalDateTime.parse(fechaHora, format);
+//
+//        return dateTime;
+//    }
+
+    public LocalDateTime getFechaHoraSalida() {
+        return fechaHoraSalida;
     }
+
     public Integer cantPasajeros(){
         return this.pasajeros.size();
     }
@@ -59,8 +76,7 @@ public class Vuelo {
         return this.destino.estasEn(unaCiudad);
     }
 
-    public LocalDateTime fechaHoraAproxLlegada(){
-        //TODO
-        return null;
+    public LocalDateTime fechaHoraLllegada(){
+        return this.fechaHoraSalida.plusMinutes(this.duracionAproxEnMins.longValue());
     }
 }

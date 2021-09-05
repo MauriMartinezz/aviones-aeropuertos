@@ -1,6 +1,7 @@
 package sva.entities.personas;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,8 +19,13 @@ public class Tripulacion {
     }
 
     public Integer cantVuelosQueRealizasteEntre(LocalDate fechaInicial, LocalDate fechaFinal){
-        //TODO
-        return null;
+//        Period.between(fechaInicial, fechaFinal);
+        Integer count = 0;
+        if(fechaFinal.isAfter(fechaFinal)){
+            count += 1;
+        }
+        return count;
+
     }
 
 
